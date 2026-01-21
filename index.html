@@ -42,12 +42,12 @@
             padding: 10px 5%; 
             display: flex; 
             align-items: center; 
-            justify-content: space-between;
+            justify-content: space-between; /* Menjaga Logo kiri, Menu kanan */
             width: 100%; 
             position: relative;
         }
 
-        /* Tombol Hamburger (Garis-garis) */
+        /* Tombol Hamburger (Warna Putih di dalam Lingkaran Primary agar terlihat) */
         .menu-toggle {
             display: flex;
             flex-direction: column;
@@ -55,38 +55,32 @@
             cursor: pointer;
             z-index: 1100;
             padding: 10px;
+            background: var(--primary); /* Memberi background gelap agar garis putih terlihat */
+            border-radius: 8px;
+            order: 2; /* Memastikan tombol di kanan */
         }
         .menu-toggle span {
             display: block;
-            width: 25px;
-            height: 3px;
-            background: var(--primary);
+            width: 22px;
+            height: 2px;
+            background: #ffffff; /* Garis warna PUTIH sesuai permintaan */
             border-radius: 2px;
             transition: 0.3s;
         }
 
-        /* Logo Position */
+        /* Logo Position di Kiri untuk Mobile */
         .logo-container { 
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            position: static;
+            transform: none;
+            order: 1; /* Memastikan logo di kiri */
         }
-        .navbar-logo { height: 50px; width: auto; display: block; }
+        .navbar-logo { height: 45px; width: auto; display: block; }
 
-        /* Search Box di Header (Kanan) */
-        .header-right {
-            display: flex;
-            align-items: center;
-        }
-        .search-box { 
-            display: none; /* Sembunyi di mobile, pakai icon saja atau taruh di sidebar */
-        }
-
-        /* SIDEBAR MENU (Seperti Lapis Bogor) */
+        /* SIDEBAR MENU */
         .sidebar {
             position: fixed;
             top: 0;
-            left: -100%; /* Sembunyi di kiri */
+            right: -100%; /* Pindah ke kanan agar sinkron dengan tombol */
             width: 80%;
             max-width: 300px;
             height: 100%;
@@ -94,9 +88,9 @@
             z-index: 2000;
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             padding: 60px 30px;
-            box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
         }
-        .sidebar.active { left: 0; }
+        .sidebar.active { right: 0; }
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -121,6 +115,7 @@
 
         /* Desktop Navigation */
         nav.desktop-nav { display: none; }
+        .header-right { display: none; }
 
         /* HERO SECTION */
         .hero { 
@@ -158,10 +153,10 @@
         /* DESKTOP RESPONSIVE */
         @media (min-width: 769px) {
             .menu-toggle { display: none; }
-            .logo-container { position: static; transform: none; }
-            .navbar-main { justify-content: space-between; padding: 15px 8%; }
-            nav.desktop-nav { display: flex; gap: 25px; }
+            .navbar-main { padding: 15px 8%; }
+            nav.desktop-nav { display: flex; gap: 25px; order: 2; }
             nav.desktop-nav a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 14px; }
+            .header-right { display: flex; order: 3; }
             .search-box { display: flex; background: #f5f5f5; border-radius: 10px; padding: 5px 15px; }
             .search-box input { border: none; background: transparent; outline: none; padding: 5px; }
             .search-box button { background: var(--primary); color: white; border: none; padding: 5px 15px; border-radius: 8px; cursor: pointer; font-size: 12px; }
@@ -176,7 +171,9 @@
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMenu()"></div>
 
 <div class="sidebar" id="sidebar">
-    <div style="font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 30px;">Menu</div>
+    <div style="font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 30px; display: flex; justify-content: space-between;">
+        Menu <span onclick="toggleMenu()" style="cursor:pointer">&times;</span>
+    </div>
     <div class="sidebar-menu">
         <a href="#home" onclick="toggleMenu()">Beranda</a>
         <a href="#tentangkami" onclick="toggleMenu()">Tentang Kami</a>
@@ -193,12 +190,6 @@
         ✨ Browniesta.co: Sweet Bites, Happy Vibes! ✨
     </div>
     <div class="navbar-main">
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
         <div class="logo-container">
             <img src="Logo bulet.png" alt="Logo Browniesta" class="navbar-logo">
         </div>
@@ -218,6 +209,12 @@
                 <button onclick="searchProduct()">CARI</button>
             </div>
         </div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
 </header>
 
@@ -230,8 +227,8 @@
         <img src="produk12.jpg" alt="Browniesta" class="hero-img" onerror="this.src='https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1974&auto=format&fit=crop';">
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 2;"></div>
         <div class="hero-content" data-aos="zoom-in">
-            <h1 style="font-size: 3rem; margin-bottom: 10px;">Browniesta.co</h1>
-            <p style="margin-bottom: 30px; font-weight: 500;">Premium Homemade Brownies - Rasakan kebahagiaan di setiap gigitan! ✨</p>
+            <h1 style="font-size: 3rem; margin-bottom: 10px; color:white;">Browniesta.co</h1>
+            <p style="margin-bottom: 30px; font-weight: 500; color:white;">Premium Homemade Brownies - Rasakan kebahagiaan di setiap gigitan! ✨</p>
             <a href="#produk" style="background: var(--secondary); color: white; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block;">BELI SEKARANG</a>
         </div>
     </section>
@@ -294,7 +291,6 @@
 <script>
     AOS.init({ duration: 800, once: true });
 
-    // Fungsi Buka/Tutup Sidebar (Hamburger Menu)
     function toggleMenu() {
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebarOverlay');
@@ -302,7 +298,6 @@
         overlay.classList.toggle('active');
     }
 
-    // LOGIKA KERANJANG
     let cart = [];
     function addToCart(name, price) {
         cart.push({ name, price });
