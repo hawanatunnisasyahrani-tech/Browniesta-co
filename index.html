@@ -31,23 +31,24 @@
             overflow-x: hidden; 
             width: 100%; 
             position: relative;
-            padding-top: 140px; 
+            padding-top: 180px; 
         }
         
         /* HEADER & NAVBAR */
         header { background: var(--white); width: 100%; position: fixed; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
         .top-info { background: var(--primary); color: var(--white); padding: 10px 5%; font-size: 11px; text-align: center; font-weight: 500; letter-spacing: 0.5px; width: 100%; }
         
+        /* Navbar Layout untuk Mobile */
         .navbar-main { 
             padding: 10px 5%; 
             display: flex; 
+            flex-direction: row; /* Kembali ke baris */
             align-items: center; 
-            justify-content: space-between; /* Menjaga Logo kiri, Menu kanan */
+            justify-content: space-between; /* Kiri dan Kanan */
             width: 100%; 
-            position: relative;
         }
 
-        /* Tombol Hamburger */
+        /* Tombol Hamburger di KIRI */
         .menu-toggle {
             display: flex;
             flex-direction: column;
@@ -57,32 +58,30 @@
             padding: 10px;
             background: var(--primary); /* Kotak Cokelat */
             border-radius: 8px;
-            order: 2; /* Memastikan tombol di kanan */
+            order: 1; /* Posisi Pertama (Kiri) */
         }
 
-        /* BAGIAN YANG DIUBAH: Garis menjadi PUTIH */
+        /* Garis Warna PUTIH */
         .menu-toggle span {
             display: block;
-            width: 22px;
+            width: 20px;
             height: 2px;
-            background: #ffffff; /* Warna PUTIH agar kelihatan */
+            background: #ffffff;
             border-radius: 2px;
             transition: 0.3s;
         }
 
-        /* Logo Position di Kiri untuk Mobile */
-        .logo-container { 
-            position: static;
-            transform: none;
-            order: 1; /* Memastikan logo di kiri */
+        /* Logo di KANAN */
+        .logo-container {
+            order: 2; /* Posisi Kedua (Kanan) */
         }
-        .navbar-logo { height: 45px; width: auto; display: block; }
+        .navbar-logo { height: 45px; width: auto; }
 
-        /* SIDEBAR MENU */
+        /* Sidebar Menu */
         .sidebar {
             position: fixed;
             top: 0;
-            right: -100%; /* Sembunyi di kanan */
+            left: -100%; /* Sembunyi di kiri */
             width: 80%;
             max-width: 300px;
             height: 100%;
@@ -90,9 +89,9 @@
             z-index: 2000;
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             padding: 60px 30px;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            box-shadow: 10px 0 30px rgba(0,0,0,0.1);
         }
-        .sidebar.active { right: 0; }
+        .sidebar.active { left: 0; }
         .sidebar-overlay {
             position: fixed;
             top: 0;
@@ -104,7 +103,6 @@
             display: none;
         }
         .sidebar-overlay.active { display: block; }
-
         .sidebar-menu { display: flex; flex-direction: column; gap: 20px; }
         .sidebar-menu a {
             text-decoration: none;
@@ -115,9 +113,16 @@
             border-bottom: 1px solid #f0f0f0;
         }
 
-        /* Desktop Navigation */
+        /* Search Box Mobile (di bawah Navbar Row) */
+        .search-container-mobile {
+            padding: 0 5% 15px;
+            width: 100%;
+        }
+        .search-box { display: flex; width: 100%; background: #f5f5f5; border-radius: 12px; padding: 4px 4px 4px 15px; border: 1px solid #eee; }
+        .search-box input { flex: 1; border: none; background: transparent; outline: none; font-size: 14px; }
+        .search-box button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 12px; }
+
         nav.desktop-nav { display: none; }
-        .header-right { display: none; }
 
         /* HERO SECTION */
         .hero { 
@@ -135,36 +140,43 @@
         .hero-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
         .hero-content { position: relative; z-index: 3; max-width: 800px; padding: 0 20px; }
 
-        /* KATALOG & CARDS */
+        /* CARDS */
         .section-title { text-align: center; margin-bottom: 40px; font-family: 'Lora', serif; font-size: 32px; color: var(--primary); }
         .katalog-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; width: 100%; padding: 0 5%; }
-        .card { background: white; border-radius: 20px; overflow: hidden; border: 1px solid #f0f0f0; transition: 0.3s; }
+        .card { background: white; border-radius: 20px; overflow: hidden; border: 1px solid #f0f0f0; transition: 0.3s; position: relative; }
         .card img { width: 100%; height: 160px; object-fit: cover; }
-        .card-body { padding: 15px; }
-        .price { color: var(--secondary); font-weight: 800; font-size: 16px; display: block; margin-bottom: 10px; }
-        .btn-cart { width: 100%; padding: 10px; border-radius: 10px; border: none; background: var(--primary); color: white; font-weight: 600; font-size: 11px; cursor: pointer; }
+        .card-body { padding: 15px; text-align: left; }
+        .card-body h3 { font-size: 15px; margin-bottom: 5px; color: var(--primary); height: 40px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .price { color: var(--secondary); font-weight: 800; font-size: 16px; margin-bottom: 12px; display: block; }
+        .btn-cart { width: 100%; padding: 12px; border-radius: 12px; border: none; background: var(--primary); color: white; font-weight: 700; font-size: 11px; cursor: pointer; }
 
-        /* Cart Floating Button */
-        .cart-trigger { position: fixed; bottom: 25px; right: 25px; background: var(--secondary); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; box-shadow: 0 10px 25px rgba(198, 149, 91, 0.4); border: none; }
-        .cart-badge { position: absolute; top: 0; right: 0; background: #ff4444; color: white; width: 22px; height: 22px; border-radius: 50%; font-size: 12px; display: flex; align-items: center; justify-content: center; border: 2px solid white; }
+        .info-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 20px; padding: 0 5%; }
+        .info-card { background: white; padding: 25px; border-radius: 20px; box-shadow: var(--shadow); border: 1px solid #f0f0f0; }
+        .map-container { width: 100%; height: 300px; border-radius: 20px; overflow: hidden; margin-top: 15px; border: 1px solid #eee; }
 
-        /* Modal Keranjang */
-        .modal { display: none; position: fixed; z-index: 3000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); }
-        .modal-content { background: white; width: 90%; max-width: 400px; margin: 10vh auto; border-radius: 20px; padding: 25px; position: relative; }
+        .cart-trigger { position: fixed; bottom: 25px; right: 25px; background: var(--secondary); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; box-shadow: 0 10px 25px rgba(198, 149, 91, 0.4); border: none; font-size: 24px; }
+        .cart-badge { position: absolute; top: 0; right: 0; background: #ff4444; color: white; width: 22px; height: 22px; border-radius: 50%; font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center; border: 2px solid white; }
 
-        /* DESKTOP RESPONSIVE */
+        .modal { display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); }
+        .modal-content { background: white; width: 95%; max-width: 450px; margin: 5vh auto; border-radius: 25px; padding: 30px; position: relative; max-height: 90vh; overflow-y: auto; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #f5f5f5; }
+        
+        .btn-checkout { background: #25d366; cursor: pointer; border: none; font-family: inherit; width: 100%; color: white; padding: 20px 15px; border-radius: 15px; margin-top: 25px; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 65px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3); }
+
         @media (min-width: 769px) {
+            body { padding-top: 140px; }
+            .navbar-main { flex-direction: row; justify-content: space-between; padding: 15px 8%; }
             .menu-toggle { display: none; }
-            .navbar-main { padding: 15px 8%; }
             nav.desktop-nav { display: flex; gap: 25px; order: 2; }
             nav.desktop-nav a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 14px; }
-            .header-right { display: flex; order: 3; }
-            .search-box { display: flex; background: #f5f5f5; border-radius: 10px; padding: 5px 15px; }
-            .search-box input { border: none; background: transparent; outline: none; padding: 5px; }
-            .search-box button { background: var(--primary); color: white; border: none; padding: 5px 15px; border-radius: 8px; cursor: pointer; font-size: 12px; }
-            .katalog-container { grid-template-columns: repeat(4, 1fr); }
+            .logo-container { order: 1; }
+            .search-container-mobile { display: none; }
+            .search-box { width: 300px; }
+            .katalog-container { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+            .card img { height: 220px; }
             .hero { height: 80vh; margin: 0; border-radius: 0; }
-            .sidebar { display: none; }
+            .info-grid { grid-template-columns: 1fr 1fr; }
+            section { padding: 80px 10%; }
         }
     </style>
 </head>
@@ -177,13 +189,12 @@
         Menu <span onclick="toggleMenu()" style="cursor:pointer">&times;</span>
     </div>
     <div class="sidebar-menu">
-        <a href="#home" onclick="toggleMenu()">Beranda</a>
+        <a href="#home" onclick="toggleMenu()">Home</a>
         <a href="#tentangkami" onclick="toggleMenu()">Tentang Kami</a>
         <a href="#produk" onclick="toggleMenu()">Produk</a>
-        <a href="#info" onclick="toggleMenu()">Info Toko</a>
+        <a href="#info" onclick="toggleMenu()">Info</a>
         <a href="#lokasi" onclick="toggleMenu()">Lokasi</a>
-        <a href="#kontak" onclick="toggleMenu()">Kontak Kami</a>
-        <a href="#" onclick="toggleMenu()">FAQ</a>
+        <a href="#kontak" onclick="toggleMenu()">Kontak</a>
     </div>
 </div>
 
@@ -192,8 +203,10 @@
         ✨ Browniesta.co: Sweet Bites, Happy Vibes! ✨
     </div>
     <div class="navbar-main">
-        <div class="logo-container">
-            <img src="Logo bulet.png" alt="Logo Browniesta" class="navbar-logo">
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
         <nav class="desktop-nav">
@@ -205,17 +218,15 @@
             <a href="#kontak">Kontak</a>
         </nav>
 
-        <div class="header-right">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Cari brownies...">
-                <button onclick="searchProduct()">CARI</button>
-            </div>
+        <div class="logo-container">
+            <img src="Logo bulet.png" alt="Logo Browniesta" class="navbar-logo" onerror="this.src='https://via.placeholder.com/45x45?text=Logo';">
         </div>
-
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+    </div>
+    
+    <div class="search-container-mobile">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Cari brownies premium...">
+            <button onclick="searchProduct()">CARI</button>
         </div>
     </div>
 </header>
@@ -226,12 +237,39 @@
 
 <main>
     <section id="home" class="hero">
-        <img src="produk12.jpg" alt="Browniesta" class="hero-img" onerror="this.src='https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1974&auto=format&fit=crop';">
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 2;"></div>
+        <img src="produk12.jpg" alt="Browniesta Hero Image" class="hero-img" onerror="this.src='https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1974&auto=format&fit=crop';">
+        <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)); z-index: 2;"></div>
         <div class="hero-content" data-aos="zoom-in">
-            <h1 style="font-size: 3rem; margin-bottom: 10px; color:white;">Browniesta.co</h1>
-            <p style="margin-bottom: 30px; font-weight: 500; color:white;">Premium Homemade Brownies - Rasakan kebahagiaan di setiap gigitan! ✨</p>
-            <a href="#produk" style="background: var(--secondary); color: white; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block;">BELI SEKARANG</a>
+            <h1 style="color: white; text-shadow: 2px 4px 20px rgba(0,0,0,0.6); font-size: 3rem;">Browniesta.co</h1>
+            <p style="font-size: clamp(16px, 4vw, 22px); opacity: 0.95; margin-bottom: 35px; text-shadow: 1px 2px 10px rgba(0,0,0,0.5); font-weight: 500; color: #fff;">
+                Premium Homemade Brownies - Rasakan kebahagiaan di setiap gigitan! ✨
+            </p>
+            <a href="#produk" style="background: var(--secondary); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 800; display: inline-block; transition: 0.3s; box-shadow: 0 10px 30px rgba(198, 149, 91, 0.4); text-transform: uppercase; letter-spacing: 1px;">
+                BELI SEKARANG
+            </a>
+        </div>
+    </section>
+
+    <section id="tentangkami" style="padding: 80px 5%; background: #fff;">
+        <div class="info-grid" style="align-items: center;">
+            <div class="info-card" data-aos="fade-right" style="padding: 0; overflow: hidden; border: none; box-shadow: none;">
+                <img src="produk11.jpg" alt="Pembuatan Browniesta" style="width: 100%; height: 450px; object-fit: cover; border-radius: 30px; box-shadow: var(--shadow);">
+            </div>
+            <div class="about-text" data-aos="fade-left" style="padding: 20px;">
+                <h4 style="color: var(--secondary); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 14px; margin-bottom: 10px;">Cerita Kami</h4>
+                <h2 style="font-family: 'Lora', serif; font-size: clamp(28px, 5vw, 40px); color: var(--primary); line-height: 1.2; margin-bottom: 25px;">Dibuat dengan Hati, Disajikan dengan Cinta.</h2>
+                <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 20px; text-align: justify;">Berawal dari dapur rumah di Bogor, <strong>Browniesta.co</strong> lahir dari keinginan untuk menghadirkan camilan yang tidak hanya manis, tapi juga memberikan kehangatan di setiap gigitannya.</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div style="background: var(--bg-light); padding: 15px; border-radius: 15px; border-left: 4px solid var(--secondary);">
+                        <h5 style="color: var(--primary); margin-bottom: 5px;">100% Halal</h5>
+                        <p style="font-size: 12px; color: var(--text-muted);">Bahan pilihan terjamin.</p>
+                    </div>
+                    <div style="background: var(--bg-light); padding: 15px; border-radius: 15px; border-left: 4px solid var(--secondary);">
+                        <h5 style="color: var(--primary); margin-bottom: 5px;">Freshly Baked</h5>
+                        <p style="font-size: 12px; color: var(--text-muted);">Dibuat setiap hari.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -239,59 +277,94 @@
         <h2 class="section-title">Menu Favorit</h2>
         <div class="katalog-container">
             <div class="card" data-aos="fade-up">
-                <img src="produk2.jpg" alt="Original">
+                <img src="produk2.jpg" alt="Original" onerror="this.src='https://via.placeholder.com/300x160?text=Brownies+Original';">
                 <div class="card-body">
-                    <h3 style="font-size: 15px; margin-bottom: 5px;">Brownies Original</h3>
+                    <h3>Brownies Original</h3>
                     <span class="price">Rp 15.000</span>
                     <button class="btn-cart" onclick="addToCart('Original', 15000)">+ KERANJANG</button>
                 </div>
             </div>
             <div class="card" data-aos="fade-up" data-aos-delay="100">
-                <img src="produk4.jpg" alt="Keju">
+                <img src="produk4.jpg" alt="Keju" onerror="this.src='https://via.placeholder.com/300x160?text=Brownies+Keju';">
                 <div class="card-body">
-                    <h3 style="font-size: 15px; margin-bottom: 5px;">Brownies Keju Premium</h3>
+                    <h3>Brownies Keju Premium</h3>
                     <span class="price">Rp 20.000</span>
                     <button class="btn-cart" onclick="addToCart('Keju', 20000)">+ KERANJANG</button>
                 </div>
             </div>
             <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <img src="produk6.jpg" alt="Almond">
+                <img src="produk6.jpg" alt="Almond" onerror="this.src='https://via.placeholder.com/300x160?text=Brownies+Almond';">
                 <div class="card-body">
-                    <h3 style="font-size: 15px; margin-bottom: 5px;">Brownies Almond Slice</h3>
+                    <h3>Brownies Almond Slice</h3>
                     <span class="price">Rp 20.000</span>
                     <button class="btn-cart" onclick="addToCart('Almond', 20000)">+ KERANJANG</button>
                 </div>
             </div>
             <div class="card" data-aos="fade-up" data-aos-delay="300">
-                <img src="produk5.jpg" alt="Mix">
+                <img src="produk5.jpg" alt="Mix" onerror="this.src='https://via.placeholder.com/300x160?text=Brownies+Mix';">
                 <div class="card-body">
-                    <h3 style="font-size: 15px; margin-bottom: 5px;">Brownies Mix Combo</h3>
+                    <h3>Brownies Mix Combo</h3>
                     <span class="price">Rp 18.000</span>
                     <button class="btn-cart" onclick="addToCart('Mix', 18000)">+ KERANJANG</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <section id="info" style="padding: 60px 0; background: #fff;">
+        <h2 class="section-title">Informasi Toko</h2>
+        <div class="info-grid">
+            <div class="info-card" data-aos="fade-right">
+                <h3 style="color: var(--secondary); margin-bottom: 15px;">🕒 Jam Operasional</h3>
+                <p><strong>Minggu:</strong> 07.00 - 12.00 WIB</p>
+                <p style="margin-top: 10px; font-size: 14px; color: var(--text-muted);">Kami selalu siap melayani pesanan Anda.</p>
+            </div>
+            <div class="info-card" data-aos="fade-left">
+                <h3 style="color: var(--secondary); margin-bottom: 15px;">📦 Pengiriman</h3>
+                <p>Melayani pengiriman area Bogor dan sekitarnya.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="lokasi" style="padding: 60px 5%;">
+        <h2 class="section-title">Lokasi Kami</h2>
+        <div class="info-card" style="max-width: 900px; margin: 0 auto;" data-aos="fade-up">
+            <p>📍 <strong>Alamat:</strong> Jl. Jembatan Pari Gang H. Isa 1 Rt. 02 Rw 03 Cijujung, Sukaraja, Kabupaten Bogor.</p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.8123456789!2d106.8291234!3d-6.5123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMzAnNDQuNCJTIDEwNiw0OSc0NC44IkU!5e0!3m2!1sid!2sid!4v1612345678901!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontak" style="text-align: center; background: var(--primary); color: white; padding: 60px 5%;">
+        <h2 class="section-title" style="color: white;">Hubungi Kami</h2>
+        <p style="opacity: 0.8; margin-bottom: 20px;">Punya pertanyaan atau pesanan khusus?</p>
+        <p style="font-size: 18px; font-weight: 600;">📧 browniesta.co@gmail.com</p>
+        <p style="font-size: 22px; font-weight: 700; margin-top: 10px; color: var(--secondary);">📞 +62 889-7339-5327</p>
+    </section>
 </main>
 
 <div id="cartModal" class="modal">
     <div class="modal-content">
-        <span onclick="closeCart()" style="position: absolute; right: 20px; top: 15px; font-size: 24px; cursor: pointer;">&times;</span>
-        <h2 style="margin-bottom: 20px;">Keranjang Saya</h2>
+        <span onclick="closeCart()" style="position: absolute; right: 25px; top: 20px; font-size: 28px; cursor: pointer;">×</span>
+        <h2 style="font-family: 'Lora', serif; margin-bottom: 20px;">Keranjang Saya</h2>
         <div id="cartItemsList"></div>
-        <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;">
-            <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 18px;">
+        <div style="margin-top: 25px; border-top: 2px dashed #eee; padding-top: 20px;">
+            <div style="display: flex; justify-content: space-between; font-size: 20px; font-weight: 800;">
                 <span>Total:</span>
                 <span id="totalPrice" style="color: var(--secondary);">Rp 0</span>
             </div>
-            <button onclick="checkoutWA()" style="width: 100%; background: #25d366; color: white; border: none; padding: 15px; border-radius: 10px; margin-top: 15px; font-weight: 700; cursor: pointer;">PESAN VIA WHATSAPP</button>
         </div>
+        <button class="btn-checkout" onclick="checkoutWA()">
+            <span>💬</span> Pesan Sekarang via WA
+        </button>
     </div>
 </div>
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
     AOS.init({ duration: 800, once: true });
+    let cart = [];
 
     function toggleMenu() {
         const sidebar = document.getElementById('sidebar');
@@ -300,36 +373,70 @@
         overlay.classList.toggle('active');
     }
 
-    let cart = [];
     function addToCart(name, price) {
         cart.push({ name, price });
         updateCartUI();
+        const badge = document.getElementById('cartCount');
+        badge.style.transform = 'scale(1.4)';
+        setTimeout(() => badge.style.transform = 'scale(1)', 200);
     }
 
     function updateCartUI() {
         document.getElementById('cartCount').innerText = cart.length;
         const list = document.getElementById('cartItemsList');
         const totalEl = document.getElementById('totalPrice');
-        list.innerHTML = cart.length === 0 ? '<p>Keranjang kosong</p>' : '';
+        list.innerHTML = cart.length === 0 ? '<p style="color:#999; text-align:center; padding:20px;">Keranjang masih kosong...</p>' : '';
         let total = 0;
         cart.forEach((item, index) => {
             total += item.price;
-            list.innerHTML += `<div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                <span>${item.name}</span>
-                <span>Rp ${item.price.toLocaleString()}</span>
-            </div>`;
+            list.innerHTML += `
+                <div class="cart-item">
+                    <div>
+                        <p style="font-weight:600; font-size:14px;">${item.name}</p>
+                        <p style="color:var(--secondary); font-size:13px;">Rp ${item.price.toLocaleString()}</p>
+                    </div>
+                    <button style="color:#ff4444; border:none; background:none; cursor:pointer; font-weight:bold;" onclick="removeItem(${index})">Hapus</button>
+                </div>
+            `;
         });
         totalEl.innerText = "Rp " + total.toLocaleString();
     }
 
-    function openCart() { document.getElementById('cartModal').style.display = 'block'; }
-    function closeCart() { document.getElementById('cartModal').style.display = 'none'; }
+    function removeItem(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+    }
+
+    function openCart() { 
+        document.getElementById('cartModal').style.display = 'block'; 
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeCart() { 
+        document.getElementById('cartModal').style.display = 'none'; 
+        document.body.style.overflow = 'auto';
+    }
 
     function checkoutWA() {
-        if (cart.length === 0) return alert("Keranjang kosong!");
-        let text = "Halo Browniesta.co, saya ingin memesan:%0A";
-        cart.forEach((item, i) => { text += `${i+1}. ${item.name}%0A`; });
+        if (cart.length === 0) return alert("Keranjang masih kosong!");
+        let text = "Halo Browniesta.co, saya ingin memesan:%0A%0A";
+        let total = 0;
+        cart.forEach((item, i) => {
+            text += (i + 1) + ". *" + item.name + "* (Rp " + item.price.toLocaleString() + ")%0A";
+            total += item.price;
+        });
+        text += "%0A---------------------------%0A*Total Bayar: Rp " + total.toLocaleString() + "*%0A%0AMohon konfirmasi pesanannya ya Admin! ✨";
         window.open("https://wa.me/6288973395327?text=" + text, '_blank');
+    }
+
+    function searchProduct() {
+        const kw = document.getElementById('searchInput').value.toLowerCase();
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(c => {
+            const t = c.querySelector('h3').innerText.toLowerCase();
+            c.style.display = t.includes(kw) ? "block" : "none";
+        });
+        document.getElementById('produk').scrollIntoView();
     }
 </script>
 
