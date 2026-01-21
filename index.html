@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Browniesta.co - Sweet Bites, Happy Vibes!</title>
     
+    <link rel="shortcut icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+    
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
@@ -38,91 +40,31 @@
         header { background: var(--white); width: 100%; position: fixed; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
         .top-info { background: var(--primary); color: var(--white); padding: 10px 5%; font-size: 11px; text-align: center; font-weight: 500; letter-spacing: 0.5px; width: 100%; }
         
-        /* Navbar Layout untuk Mobile */
-        .navbar-main { 
-            padding: 10px 5%; 
-            display: flex; 
-            flex-direction: row; /* Kembali ke baris */
-            align-items: center; 
-            justify-content: space-between; /* Kiri dan Kanan */
-            width: 100%; 
-        }
-
-        /* Tombol Hamburger di KIRI */
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1100;
-            padding: 10px;
-            background: var(--primary); /* Kotak Cokelat */
-            border-radius: 8px;
-            order: 1; /* Posisi Pertama (Kiri) */
-        }
-
-        /* Garis Warna PUTIH */
-        .menu-toggle span {
-            display: block;
-            width: 20px;
-            height: 2px;
-            background: #ffffff;
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        /* Logo di KANAN */
-        .logo-container {
-            order: 2; /* Posisi Kedua (Kanan) */
-        }
-        .navbar-logo { height: 45px; width: auto; }
-
-        /* Sidebar Menu */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -100%; /* Sembunyi di kiri */
-            width: 80%;
-            max-width: 300px;
-            height: 100%;
-            background: var(--white);
-            z-index: 2000;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 60px 30px;
-            box-shadow: 10px 0 30px rgba(0,0,0,0.1);
-        }
-        .sidebar.active { left: 0; }
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1999;
-            display: none;
-        }
-        .sidebar-overlay.active { display: block; }
-        .sidebar-menu { display: flex; flex-direction: column; gap: 20px; }
-        .sidebar-menu a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
-            font-size: 16px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        /* Search Box Mobile (di bawah Navbar Row) */
-        .search-container-mobile {
-            padding: 0 5% 15px;
-            width: 100%;
-        }
-        .search-box { display: flex; width: 100%; background: #f5f5f5; border-radius: 12px; padding: 4px 4px 4px 15px; border: 1px solid #eee; }
-        .search-box input { flex: 1; border: none; background: transparent; outline: none; font-size: 14px; }
+        .navbar-main { padding: 15px 5%; display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; }
+        .search-box { display: flex; width: 100%; max-width: 500px; background: #f5f5f5; border-radius: 12px; padding: 4px 4px 4px 15px; border: 1px solid #eee; transition: 0.3s; }
+        .search-box:focus-within { background: #fff; border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(198, 149, 91, 0.1); }
+        .search-box input { flex: 1; border: none; background: transparent; outline: none; font-size: 14px; font-family: inherit; }
         .search-box button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 12px; }
 
-        nav.desktop-nav { display: none; }
+        nav { 
+            display: flex; 
+            gap: 10px 15px; 
+            width: 100%; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            padding: 5px 0;
+        }
+        nav a { 
+            text-decoration: none; 
+            color: var(--text-dark); 
+            font-weight: 600; 
+            font-size: 12px; 
+            white-space: nowrap; 
+            transition: 0.3s; 
+            padding: 4px 2px; 
+            border-bottom: 2px solid transparent; 
+        }
+        nav a:hover { color: var(--secondary); border-bottom-color: var(--secondary); }
 
         /* HERO SECTION */
         .hero { 
@@ -137,8 +79,23 @@
             border-radius: 0 0 30px 30px;
             margin: 0 10px;
         }
-        .hero-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
-        .hero-content { position: relative; z-index: 3; max-width: 800px; padding: 0 20px; }
+
+        .hero-img { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            z-index: 1; 
+        }
+
+        .hero-content { 
+            position: relative; 
+            z-index: 3; 
+            max-width: 800px; 
+            padding: 0 20px;
+        }
 
         /* CARDS */
         .section-title { text-align: center; margin-bottom: 40px; font-family: 'Lora', serif; font-size: 32px; color: var(--primary); }
@@ -148,7 +105,7 @@
         .card-body { padding: 15px; text-align: left; }
         .card-body h3 { font-size: 15px; margin-bottom: 5px; color: var(--primary); height: 40px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
         .price { color: var(--secondary); font-weight: 800; font-size: 16px; margin-bottom: 12px; display: block; }
-        .btn-cart { width: 100%; padding: 12px; border-radius: 12px; border: none; background: var(--primary); color: white; font-weight: 700; font-size: 11px; cursor: pointer; }
+        .btn-cart { width: 100%; padding: 12px; border-radius: 12px; border: none; background: var(--primary); color: white; font-weight: 700; font-size: 11px; cursor: pointer; transition: 0.3s; }
 
         .info-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 20px; padding: 0 5%; }
         .info-card { background: white; padding: 25px; border-radius: 20px; box-shadow: var(--shadow); border: 1px solid #f0f0f0; }
@@ -161,17 +118,31 @@
         .modal-content { background: white; width: 95%; max-width: 450px; margin: 5vh auto; border-radius: 25px; padding: 30px; position: relative; max-height: 90vh; overflow-y: auto; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #f5f5f5; }
         
-        .btn-checkout { background: #25d366; cursor: pointer; border: none; font-family: inherit; width: 100%; color: white; padding: 20px 15px; border-radius: 15px; margin-top: 25px; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 65px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3); }
+        .btn-checkout { 
+            background: #25d366; 
+            cursor: pointer; 
+            border: none; 
+            font-family: inherit; 
+            width: 100%; 
+            color: white; 
+            padding: 20px 15px; 
+            border-radius: 15px; 
+            margin-top: 25px; 
+            font-weight: 800; 
+            font-size: 18px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            min-height: 65px;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+            transition: 0.3s;
+        }
 
         @media (min-width: 769px) {
             body { padding-top: 140px; }
             .navbar-main { flex-direction: row; justify-content: space-between; padding: 15px 8%; }
-            .menu-toggle { display: none; }
-            nav.desktop-nav { display: flex; gap: 25px; order: 2; }
-            nav.desktop-nav a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 14px; }
-            .logo-container { order: 1; }
-            .search-container-mobile { display: none; }
-            .search-box { width: 300px; }
+            nav { justify-content: center; padding: 5px 0; flex-wrap: nowrap; gap: 25px; }
             .katalog-container { grid-template-columns: repeat(4, 1fr); gap: 25px; }
             .card img { height: 220px; }
             .hero { height: 80vh; margin: 0; border-radius: 0; }
@@ -182,52 +153,23 @@
 </head>
 <body>
 
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMenu()"></div>
-
-<div class="sidebar" id="sidebar">
-    <div style="font-size: 24px; font-weight: 700; color: var(--primary); margin-bottom: 30px; display: flex; justify-content: space-between;">
-        Menu <span onclick="toggleMenu()" style="cursor:pointer">&times;</span>
-    </div>
-    <div class="sidebar-menu">
-        <a href="#home" onclick="toggleMenu()">Home</a>
-        <a href="#tentangkami" onclick="toggleMenu()">Tentang Kami</a>
-        <a href="#produk" onclick="toggleMenu()">Produk</a>
-        <a href="#info" onclick="toggleMenu()">Info</a>
-        <a href="#lokasi" onclick="toggleMenu()">Lokasi</a>
-        <a href="#kontak" onclick="toggleMenu()">Kontak</a>
-    </div>
-</div>
-
 <header>
     <div class="top-info">
         ✨ Browniesta.co: Sweet Bites, Happy Vibes! ✨
     </div>
     <div class="navbar-main">
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Cari brownies premium...">
+            <button onclick="searchProduct()">CARI</button>
         </div>
-
-        <nav class="desktop-nav">
+        <nav>
             <a href="#home">Home</a>
-            <a href="#tentangkami">Tentang</a>
+            <a href="#tentangkami">Tentang kami</a>
             <a href="#produk">Produk</a>
             <a href="#info">Info</a>
             <a href="#lokasi">Lokasi</a>
             <a href="#kontak">Kontak</a>
         </nav>
-
-        <div class="logo-container">
-            <img src="Logo bulet.png" alt="Logo Browniesta" class="navbar-logo" onerror="this.src='https://via.placeholder.com/45x45?text=Logo';">
-        </div>
-    </div>
-    
-    <div class="search-container-mobile">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Cari brownies premium...">
-            <button onclick="searchProduct()">CARI</button>
-        </div>
     </div>
 </header>
 
@@ -237,8 +179,11 @@
 
 <main>
     <section id="home" class="hero">
-        <img src="produk12.jpg" alt="Browniesta Hero Image" class="hero-img" onerror="this.src='https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1974&auto=format&fit=crop';">
+        <img src="produk12.jpg" alt="Browniesta Hero Image" class="hero-img" 
+             onerror="this.src='https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1974&auto=format&fit=crop';">
+        
         <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)); z-index: 2;"></div>
+
         <div class="hero-content" data-aos="zoom-in">
             <h1 style="color: white; text-shadow: 2px 4px 20px rgba(0,0,0,0.6); font-size: 3rem;">Browniesta.co</h1>
             <p style="font-size: clamp(16px, 4vw, 22px); opacity: 0.95; margin-bottom: 35px; text-shadow: 1px 2px 10px rgba(0,0,0,0.5); font-weight: 500; color: #fff;">
@@ -253,12 +198,18 @@
     <section id="tentangkami" style="padding: 80px 5%; background: #fff;">
         <div class="info-grid" style="align-items: center;">
             <div class="info-card" data-aos="fade-right" style="padding: 0; overflow: hidden; border: none; box-shadow: none;">
-                <img src="produk11.jpg" alt="Pembuatan Browniesta" style="width: 100%; height: 450px; object-fit: cover; border-radius: 30px; box-shadow: var(--shadow);">
+                <img src="produk11.jpg" alt="Pembuatan Browniesta" 
+                     style="width: 100%; height: 450px; object-fit: cover; border-radius: 30px; box-shadow: var(--shadow);">
             </div>
+
             <div class="about-text" data-aos="fade-left" style="padding: 20px;">
                 <h4 style="color: var(--secondary); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 14px; margin-bottom: 10px;">Cerita Kami</h4>
-                <h2 style="font-family: 'Lora', serif; font-size: clamp(28px, 5vw, 40px); color: var(--primary); line-height: 1.2; margin-bottom: 25px;">Dibuat dengan Hati, Disajikan dengan Cinta.</h2>
-                <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 20px; text-align: justify;">Berawal dari dapur rumah di Bogor, <strong>Browniesta.co</strong> lahir dari keinginan untuk menghadirkan camilan yang tidak hanya manis, tapi juga memberikan kehangatan di setiap gigitannya.</p>
+                <h2 style="font-family: 'Lora', serif; font-size: clamp(28px, 5vw, 40px); color: var(--primary); line-height: 1.2; margin-bottom: 25px;">
+                    Dibuat dengan Hati, Disajikan dengan Cinta.
+                </h2>
+                <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 20px; text-align: justify;">
+                    Berawal dari dapur rumah di Bogor, <strong>Browniesta.co</strong> lahir dari keinginan untuk menghadirkan camilan yang tidak hanya manis, tapi juga memberikan kehangatan di setiap gigitannya.
+                </p>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div style="background: var(--bg-light); padding: 15px; border-radius: 15px; border-left: 4px solid var(--secondary);">
                         <h5 style="color: var(--primary); margin-bottom: 5px;">100% Halal</h5>
@@ -273,55 +224,63 @@
         </div>
     </section>
 
-    <section id="produk" style="padding: 60px 0;">
-        <h2 class="section-title">Menu Favorit</h2>
-        <div class="katalog-container">
-            <div class="card" data-aos="fade-up">
-                <img src="produk2.jpg" alt="Original" onerror="this.src='https://via.placeholder.com/300x160?text=Brownies+Original';">
-                <div class="card-body">
-                    <h3>Brownies Original</h3>
-                    <span class="price">Rp 15.000</span>
-                    <button class="btn-cart" onclick="addToCart('Original', 15000)">+ KERANJANG</button>
-                </div>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="100">
-                <img src="produk4.jpg" alt="Keju" onerror="this.src='https://via.placeholder.com/300x160?text=Brownies+Keju';">
-                <div class="card-body">
-                    <h3>Brownies Keju Premium</h3>
-                    <span class="price">Rp 20.000</span>
-                    <button class="btn-cart" onclick="addToCart('Keju', 20000)">+ KERANJANG</button>
-                </div>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <img src="produk6.jpg" alt="Almond" onerror="this.src='https://via.placeholder.com/300x160?text=Brownies+Almond';">
-                <div class="card-body">
-                    <h3>Brownies Almond Slice</h3>
-                    <span class="price">Rp 20.000</span>
-                    <button class="btn-cart" onclick="addToCart('Almond', 20000)">+ KERANJANG</button>
-                </div>
-            </div>
-            <div class="card" data-aos="fade-up" data-aos-delay="300">
-                <img src="produk5.jpg" alt="Mix" onerror="this.src='https://via.placeholder.com/300x160?text=Brownies+Mix';">
-                <div class="card-body">
-                    <h3>Brownies Mix Combo</h3>
-                    <span class="price">Rp 18.000</span>
-                    <button class="btn-cart" onclick="addToCart('Mix', 18000)">+ KERANJANG</button>
-                </div>
+   <section id="produk" style="padding: 60px 0;">
+    <h2 class="section-title">Menu Favorit</h2>
+    <div class="katalog-container">
+        
+        <div class="card" data-aos="fade-up">
+            <img src="produk2.jpg" alt="Original" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div style="display:none; width:100%; height:160px; background:#eee; text-align:center; line-height:160px; color:#999;">Foto Tidak Ada</div>
+            <div class="card-body">
+                <h3>Brownies Original</h3>
+                <span class="price">Rp 15.000</span>
+                <button class="btn-cart" onclick="addToCart('Original', 15000)">+ KERANJANG</button>
             </div>
         </div>
-    </section>
 
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <img src="produk4.jpg" alt="Keju" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div style="display:none; width:100%; height:160px; background:#eee; text-align:center; line-height:160px; color:#999;">Foto Tidak Ada</div>
+            <div class="card-body">
+                <h3>Brownies Keju Premium</h3>
+                <span class="price">Rp 20.000</span>
+                <button class="btn-cart" onclick="addToCart('Keju', 20000)">+ KERANJANG</button>
+            </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="200"> 
+            <img src="produk6.jpg" alt="Almond" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div style="display:none; width:100%; height:160px; background:#eee; text-align:center; line-height:160px; color:#999;">Foto Tidak Ada</div>
+            <div class="card-body">
+                <h3>Brownies Almond Slice</h3>
+                <span class="price">Rp 20.000</span>
+                <button class="btn-cart" onclick="addToCart('Almond', 20000)">+ KERANJANG</button>
+            </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <img src="produk5.jpg" alt="Mix" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div style="display:none; width:100%; height:160px; background:#eee; text-align:center; line-height:160px; color:#999;">Foto Tidak Ada</div>
+            <div class="card-body">
+                <h3>Brownies Mix Combo</h3>
+                <span class="price">Rp 18.000</span>
+                <button class="btn-cart" onclick="addToCart('Mix', 18000)">+ KERANJANG</button>
+            </div>
+        </div>
+    </div>
+</section>
+            
     <section id="info" style="padding: 60px 0; background: #fff;">
         <h2 class="section-title">Informasi Toko</h2>
         <div class="info-grid">
             <div class="info-card" data-aos="fade-right">
                 <h3 style="color: var(--secondary); margin-bottom: 15px;">🕒 Jam Operasional</h3>
                 <p><strong>Minggu:</strong> 07.00 - 12.00 WIB</p>
-                <p style="margin-top: 10px; font-size: 14px; color: var(--text-muted);">Kami selalu siap melayani pesanan Anda.</p>
+                <p style="margin-top: 10px; font-size: 14px; color: var(--text-muted);">Kami selalu siap melayani pesanan Anda setiap hari untuk menemani waktu santai Anda.</p>
             </div>
             <div class="info-card" data-aos="fade-left">
                 <h3 style="color: var(--secondary); margin-bottom: 15px;">📦 Pengiriman</h3>
-                <p>Melayani pengiriman area Bogor dan sekitarnya.</p>
+                <p>Melayani pengiriman area Bogor dan sekitarnya. Brownies dikirim dalam kondisi fresh dari oven.</p>
             </div>
         </div>
     </section>
@@ -331,8 +290,10 @@
         <div class="info-card" style="max-width: 900px; margin: 0 auto;" data-aos="fade-up">
             <p>📍 <strong>Alamat:</strong> Jl. Jembatan Pari Gang H. Isa 1 Rt. 02 Rw 03 Cijujung, Sukaraja, Kabupaten Bogor.</p>
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.8123456789!2d106.8291234!3d-6.5123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMzAnNDQuNCJTIDEwNiw0OSc0NC44IkU!5e0!3m2!1sid!2sid!4v1612345678901!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.856860010991!2d106.8288002!3d-6.539744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c1753944640b%3A0xe5102f43d874591e!2sCijujung%2C%20Sukaraja%2C%20Bogor%20Regency%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1705221000000!5m2!1sen!2sid" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
+            <a href="https://maps.app.goo.gl/uX7MvP7eP7p7p7p7" target="_blank" style="display: block; text-align: center; margin-top: 15px; color: var(--secondary); font-weight: bold; text-decoration: none;">Buka di Google Maps →</a>
         </div>
     </section>
 
@@ -366,13 +327,6 @@
     AOS.init({ duration: 800, once: true });
     let cart = [];
 
-    function toggleMenu() {
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('sidebarOverlay');
-        sidebar.classList.toggle('active');
-        overlay.classList.toggle('active');
-    }
-
     function addToCart(name, price) {
         cart.push({ name, price });
         updateCartUI();
@@ -386,6 +340,7 @@
         const list = document.getElementById('cartItemsList');
         const totalEl = document.getElementById('totalPrice');
         list.innerHTML = cart.length === 0 ? '<p style="color:#999; text-align:center; padding:20px;">Keranjang masih kosong...</p>' : '';
+        
         let total = 0;
         cart.forEach((item, index) => {
             total += item.price;
