@@ -47,7 +47,7 @@
             position: relative;
         }
 
-        /* Tombol Hamburger (Warna Putih di dalam Lingkaran Primary agar terlihat) */
+        /* Tombol Hamburger */
         .menu-toggle {
             display: flex;
             flex-direction: column;
@@ -55,15 +55,17 @@
             cursor: pointer;
             z-index: 1100;
             padding: 10px;
-            background: var(--primary); /* Memberi background gelap agar garis putih terlihat */
+            background: var(--primary); /* Kotak Cokelat */
             border-radius: 8px;
             order: 2; /* Memastikan tombol di kanan */
         }
+
+        /* BAGIAN YANG DIUBAH: Garis menjadi PUTIH */
         .menu-toggle span {
             display: block;
             width: 22px;
             height: 2px;
-            background: #ffffff; /* Garis warna PUTIH sesuai permintaan */
+            background: #ffffff; /* Warna PUTIH agar kelihatan */
             border-radius: 2px;
             transition: 0.3s;
         }
@@ -80,7 +82,7 @@
         .sidebar {
             position: fixed;
             top: 0;
-            right: -100%; /* Pindah ke kanan agar sinkron dengan tombol */
+            right: -100%; /* Sembunyi di kanan */
             width: 80%;
             max-width: 300px;
             height: 100%;
