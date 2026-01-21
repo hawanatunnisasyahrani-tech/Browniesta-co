@@ -137,7 +137,24 @@
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
             transition: 0.3s;
         }
+/* Styling Logo Baru */
+.logo-container {
+    display: flex;
+    align-items: center;
+}
 
+.navbar-logo {
+    height: 60px; /* Ukuran tinggi logo */
+    width: auto;  /* Lebar menyesuaikan otomatis */
+    transition: 0.3s;
+}
+
+/* Responsif untuk Mobile */
+@media (max-width: 768px) {
+    .navbar-logo {
+        height: 50px; /* Logo sedikit lebih kecil di HP */
+    }
+}
         @media (min-width: 769px) {
             body { padding-top: 140px; }
             .navbar-main { flex-direction: row; justify-content: space-between; padding: 15px 8%; }
@@ -156,20 +173,24 @@
     <div class="top-info">
         ✨ Browniesta.co: Sweet Bites, Happy Vibes! ✨
     </div>
-    <div class="navbar-main">
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Cari brownies premium...">
-            <button onclick="searchProduct()">CARI</button>
-        </div>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#tentangkami">Tentang kami</a>
-            <a href="#produk">Produk</a>
-            <a href="#info">Info</a>
-            <a href="#lokasi">Lokasi</a>
-            <a href="#kontak">Kontak</a>
-        </nav>
+  <div class="navbar-main">
+    <div class="logo-container">
+        <img src="Logo bulet.png" alt="Logo Browniesta" class="navbar-logo">
     </div>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Cari brownies premium...">
+        <button onclick="searchProduct()">CARI</button>
+    </div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#tentangkami">Tentang kami</a>
+        <a href="#produk">Produk</a>
+        <a href="#info">Info</a>
+        <a href="#lokasi">Lokasi</a>
+        <a href="#kontak">Kontak</a>
+    </nav>
+</div>
 </header>
 
 <button class="cart-trigger" onclick="openCart()">
